@@ -21,6 +21,6 @@ rooter.get('/ping', (req, res) => {
 });
 
 
-export default mainRoutes;
-//export default rooter;
+//export default mainRoutes;
+export default rooter;
 

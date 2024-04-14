@@ -73,4 +73,4 @@ rooter.put('/update/:id', (req, res) => {
 });
 
 
-export default userRoutes;
+export default rooter;

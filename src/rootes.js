@@ -51,9 +51,9 @@ rooter.post('/add', (req, res) => {
 
 rooter.put('/update/:id', (req, res) => {
   const { body: user } = req; // Making an alias (user) with body
-  
+
   const id = parseInt(req.params.id, 10);
-  
+
   const updatedUser = userService.updateUser(id, user);
 
   if (updatedUser) {
