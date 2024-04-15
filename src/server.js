@@ -12,6 +12,7 @@ app.use('/v1', mainRoutes)
 app.use('/v1/user', userRoutes)
 
 
+
 app.get('/', (req, res) => {
   res.status(StatusCodes.OK);
 
