@@ -23,10 +23,51 @@ rooter.get('/ping', (req, res) => {
 
 
 rooter.get('/all', (req, res) => {
-  res.status(StatusCodes.OK);
 
-  //console.log('Hello World!');
-  res.send('OK !');
+  const users = userService.getAllUsers();
+  //console.log('User lenght: ', users.length);
+
+  //If we have at least 1 element
+  if (users.length > 0) {
+
+    return res.status(StatusCodes.OK).send({
+      status: STATUS.success,
+      users
+    });
+
+  }
+
+  else {
+
+    return res.status(StatusCodes.NOT_FOUND).send({
+      status: STATUS.failure,
+      message: 'No users found'
+    });
+  }
+
+});
+
+rooter.get('/get/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);//decimal base
+  const user = userService.getUser(id);
+
+  //If we have at least 1 element
+  if (user) {
+    //console.log('User is found');
+    return res.status(StatusCodes.OK).send(
+      {
+        status: STATUS.success,
+        user
+      });
+  }
+  else {
+    //console.log('user is not found');
+    return res.status(StatusCodes.NOT_FOUND).send(
+      {
+        status: STATUS.failure,
+        message: `user ${id} is not found`
+      });
+  }
 });
 
 
@@ -52,15 +93,15 @@ rooter.post('/add', (req, res) => {
 
 rooter.put('/update/:id', (req, res) => {
   const { body: user } = req; // Making an alias (user) with body
-  
+
   const id = parseInt(req.params.id, 10);
-  
+
   const updatedUser = userService.updateUser(id, user);
 
   if (updatedUser) {
     return res.status(StatusCodes.OK).send({
       status: STATUS.success,
-      message: updatedUser
+      user: updatedUser
     });
   }
   else {
