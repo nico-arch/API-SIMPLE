@@ -1,7 +1,10 @@
 import users from '../data/user.data.js'
 
 const insert = (details) => {
-  const newUser = { ...details, id: users.length + 1 };
+  const newUser = {
+    id: users.length + 1,
+    ...details
+  };
   users.push(newUser);
 
   return newUser;
@@ -25,35 +28,35 @@ const getAll = () => {
 const update = (userID, newDetails) => {
   let existingUser = null;
   let userIndex;
-  users.map( ( (user, index) => {
+  users.map(((user, index) => {
     if (user.id === userID) {
-        existingUser = user;
-        userIndex = index;
+      existingUser = user;
+      userIndex = index;
     };
-  } ) );
+  }));
 
-  if(!existingUser){
+  if (!existingUser) {
     return false;
   }
-  
+
   // {}
-  const updatedUser = {...existingUser, ...newDetails}
+  const updatedUser = { ...existingUser, ...newDetails }
   users.splice(userIndex, 1, updatedUser);
-  
+
   return updatedUser;
 
 };
 
-const remove = (userID) => {
+const remove = (userId) => {
   const deleteUser = (user, index) => {
     if (user.id === userId) {
-      user.splice(index, 1);//delete 1 user, which had that id, at that index (in other words, delete the array element found)
-      return true;
-    };
-    return false;
+      users.splice(index, 1);//delete 1 user, which had that id, at that index (in other words, delete the array element found)
+      //return true;
+    }
+    //return false;
   };
   return users.find(deleteUser);
-};
+}
 
 export default {
   insert,
