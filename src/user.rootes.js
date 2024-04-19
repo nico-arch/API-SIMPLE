@@ -1,7 +1,9 @@
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
-
 import userService from './services/user.service.js';
+import { expressYupMiddleware } from 'express-yup-middleware';
+import userSchemas from './user.schemas.js';
+
 
 
 const rooter = express.Router();
@@ -71,25 +73,28 @@ rooter.get('/get/:id', (req, res) => {
 });
 
 
-rooter.post('/add', (req, res) => {
-  const { body: user } = req; // Making an alias (user) with body
+rooter.post(
+  '/add',
+  expressYupMiddleware({ userSchemas }),
+  (req, res) => {
+    const { body: user } = req; // Making an alias (user) with body
 
-  const addedUser = userService.addUser(user);
+    const addedUser = userService.addUser(user);
 
-  /* To use later
-  if (!user.name) {
-    return res.status(StatusCodes.BAD_REQUEST).send({
-      status: STATUS.failure,
-      message: 'Name is required'
+    /* To use later
+    if (!user.name) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        status: STATUS.failure,
+        message: 'Name is required'
+      });
+    };  
+    */
+
+    return res.status(StatusCodes.CREATED).send({
+      status: STATUS.success,
+      user: addedUser
     });
-  };  
-  */
-
-  return res.status(StatusCodes.CREATED).send({
-    status: STATUS.success,
-    user: addedUser
   });
-});
 
 rooter.put('/update/:id', (req, res) => {
   const { body: user } = req; // Making an alias (user) with body
