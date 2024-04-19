@@ -76,8 +76,7 @@ rooter.get('/get/:id', (req, res) => {
 rooter.post(
   '/add',
   expressYupMiddleware({
-    schemaValidator: addUser,
-    expectedStatusCode: StatusCodes.BAD_REQUEST
+    schemaValidator: addUser
   }),
   (req, res) => {
     const { body: user } = req; // Making an alias (user) with body
