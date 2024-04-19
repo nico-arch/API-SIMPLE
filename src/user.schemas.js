@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 
 //Add a schema to validate when we add user
-const addUser = {
+export const addUser = {
   schema: {
     body: {
       name: yup.string(),
@@ -13,6 +13,3 @@ const addUser = {
   },
 }
 
-export default {
-  addUser
-};

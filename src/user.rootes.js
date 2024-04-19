@@ -2,7 +2,7 @@ import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 import userService from './services/user.service.js';
 import { expressYupMiddleware } from 'express-yup-middleware';
-import userSchemas from './user.schemas.js';
+import { addUser } from './user.schemas.js';
 
 
 
@@ -75,7 +75,10 @@ rooter.get('/get/:id', (req, res) => {
 
 rooter.post(
   '/add',
-  expressYupMiddleware({ userSchemas }),
+  expressYupMiddleware({
+    schemaValidator: addUser,
+    expectedStatusCode: StatusCodes.BAD_REQUEST
+  }),
   (req, res) => {
     const { body: user } = req; // Making an alias (user) with body
 
