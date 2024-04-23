@@ -2,8 +2,9 @@ import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 import userService from './services/user.service.js';
 import { expressYupMiddleware } from 'express-yup-middleware';
-import { addUser } from './user.schemas.js';
+import { addUser, updateUser } from './user.schemas.js';
 
+import { addUser as addUserController, updateUser as updateUserController } from './controllers/user.controller.js';
 
 
 const rooter = express.Router();
@@ -76,49 +77,16 @@ rooter.get('/get/:id', (req, res) => {
 rooter.post(
   '/add',
   expressYupMiddleware({
-    schemaValidator: addUser
+    schemaValidator: addUser,
+    expectedStatusCode: StatusCodes.BAD_REQUEST
   }),
-  (req, res) => {
-    const { body: user } = req; // Making an alias (user) with body
+  addUserController);
 
-    const addedUser = userService.addUser(user);
-
-    /* To use later
-    if (!user.name) {
-      return res.status(StatusCodes.BAD_REQUEST).send({
-        status: STATUS.failure,
-        message: 'Name is required'
-      });
-    };  
-    */
-
-    return res.status(StatusCodes.CREATED).send({
-      status: STATUS.success,
-      user: addedUser
-    });
-  });
-
-rooter.put('/update/:id', (req, res) => {
-  const { body: user } = req; // Making an alias (user) with body
-
-  const id = parseInt(req.params.id, 10);
-
-  const updatedUser = userService.updateUser(id, user);
-
-  if (updatedUser) {
-    return res.status(StatusCodes.OK).send({
-      status: STATUS.success,
-      user: updatedUser
-    });
-  }
-  else {
-    return res.status(StatusCodes.NOT_FOUND).send({
-      status: STATUS.failure,
-      message: `User ${id} is not found`
-    });
-  };
-
-});
+rooter.put('/update/:id',
+  expressYupMiddleware({
+    schemaValidator: updateUser,
+    expectedStatusCode: StatusCodes.BAD_REQUEST
+  }), updateUserController);
 
 rooter.delete('/delete/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
