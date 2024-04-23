@@ -51,9 +51,9 @@ const remove = (userId) => {
   const deleteUser = (user, index) => {
     if (user.id === userId) {
       users.splice(index, 1);//delete 1 user, which had that id, at that index (in other words, delete the array element found)
-      //return true;
+      return true;
     }
-    //return false;
+    return false;
   };
   return users.find(deleteUser);
 }

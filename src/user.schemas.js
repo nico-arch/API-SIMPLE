@@ -1,5 +1,17 @@
 import * as yup from 'yup';
 
+export const getUser = {
+  schema: {
+    params:
+    {
+      yupSchema: yup.object().shape(
+        {
+          id: yup.number().required(),
+        }
+      ),
+    }
+  },
+}
 
 //Add a schema to validate when we add a user
 export const addUser = {
@@ -21,6 +33,14 @@ export const addUser = {
 //Add a schema to validate when we update a user
 export const updateUser = {
   schema: {
+    params:
+    {
+      yupSchema: yup.object().shape(
+        {
+          id: yup.number().required(),
+        }
+      ),
+    },
     body:
     {
       yupSchema: yup.object().shape(
@@ -29,6 +49,19 @@ export const updateUser = {
           email: yup.string().email(),
           city: yup.string(),
           country: yup.string(),
+        }
+      ),
+    }
+  },
+}
+
+export const removeUser = {
+  schema: {
+    params:
+    {
+      yupSchema: yup.object().shape(
+        {
+          id: yup.number().required(),
         }
       ),
     }
