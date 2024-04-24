@@ -1,5 +1,20 @@
 import * as yup from 'yup';
 
+const min_length =
+{
+  name: 2,
+  city: 2,
+  country: 3
+};
+
+const max_length =
+{
+  name: 30,
+  city: 30,
+  country: 30
+}
+
+//A schema to validate when we get an user
 export const getUser = {
   schema: {
     params:
@@ -13,24 +28,24 @@ export const getUser = {
   },
 }
 
-//Add a schema to validate when we add a user
+//A schema to validate when we add an user
 export const addUser = {
   schema: {
     body:
     {
       yupSchema: yup.object().shape(
         {
-          name: yup.string(),
+          name: yup.string().min(min_length.name).max(max_length.name),
           email: yup.string().email().required(),
-          city: yup.string(),
-          country: yup.string(),
+          city: yup.string().min(min_length.city).max(max_length.city),
+          country: yup.string().min(min_length.country).max(max_length.country),
         }
       ),
     }
   },
 }
 
-//Add a schema to validate when we update a user
+//A schema to validate when we update an user
 export const updateUser = {
   schema: {
     params:
@@ -45,16 +60,17 @@ export const updateUser = {
     {
       yupSchema: yup.object().shape(
         {
-          name: yup.string(),
-          email: yup.string().email(),
-          city: yup.string(),
-          country: yup.string(),
+          name: yup.string().min(min_length.name).max(max_length.name),
+          email: yup.string().email().required(),
+          city: yup.string().min(min_length.city).max(max_length.city),
+          country: yup.string().min(min_length.country).max(max_length.country),
         }
       ),
     }
   },
 }
 
+//A schema to validate when we remove an user
 export const removeUser = {
   schema: {
     params:
