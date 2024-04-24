@@ -1,5 +1,9 @@
+import pino from 'pino';
 import { StatusCodes } from "http-status-codes";
 import userService from "../services/user.service.js";
+
+const logger = pino();
+
 
 const STATUS = {
   success: 'OK',
@@ -13,6 +17,7 @@ const getUser = (req, res) => {
   //If we have at least 1 element
   if (user) {
     //console.log('User is found');
+    logger.info(`Getting user ${id}`);
     return res.status(StatusCodes.OK).send(
       {
         status: STATUS.success,
@@ -20,7 +25,8 @@ const getUser = (req, res) => {
       });
   }
   else {
-    //console.log('user is not found');
+    logger.info(`User ${id} is not found`);
+
     return res.status(StatusCodes.NOT_FOUND).send(
       {
         status: STATUS.failure,
@@ -36,7 +42,7 @@ const getAllUsers = (req, res) => {
 
   //If we have at least 1 element
   if (users.length > 0) {
-
+    logger.info(`Getting all users`);
     return res.status(StatusCodes.OK).send({
       status: STATUS.success,
       users
@@ -61,13 +67,16 @@ const updateUser = (req, res) => {
 
   const updatedUser = userService.updateUser(id, user);
 
+
   if (updatedUser) {
+    logger.info(`Updating user ${id}`);
     return res.status(StatusCodes.OK).send({
       status: STATUS.success,
       user: updatedUser
     });
   }
   else {
+    logger.info(`User ${id} is not found for updating`);
     return res.status(StatusCodes.NOT_FOUND).send({
       status: STATUS.failure,
       message: `User ${id} is not found`
@@ -80,6 +89,7 @@ const addUser = (req, res) => {
   const { body: user } = req; // Making an alias (user) with body
 
   const addedUser = userService.addUser(user);
+  logger.info('Creating a new user');
 
   /* To use later
   if (!user.name) {
@@ -102,7 +112,7 @@ const removeUser = (req, res) => {
   const user = userService.getUser(id);
   if (user) {
     userService.removeUser(id);
-    
+    logger.info(`Removing user ${id}`);
     return res.status(StatusCodes.OK).send(
       {
         status: STATUS.success,
@@ -110,7 +120,7 @@ const removeUser = (req, res) => {
       });
   }
   else {
-    
+    logger.info(`User ${id} is not found for remove`);
     return res.status(StatusCodes.NOT_FOUND).send(
       {
         status: STATUS.failure,
