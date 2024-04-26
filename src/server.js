@@ -3,7 +3,7 @@ import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
 import { StatusCodes } from 'http-status-codes';
 import compression from 'compression';
-
+import cors from 'cors';
 
 import mainRoutes from './main.routes.js';
 import userRoutes from './user.rootes.js';
@@ -25,7 +25,7 @@ app.use(compression());
 app.use(limiter);
 app.use(express.json());
 app.use(helmet());
-
+app.use(cors());
 
 
 
