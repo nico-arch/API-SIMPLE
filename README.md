@@ -4,7 +4,7 @@
 This Node.js API (v1) serves as the backend for a React.js project, providing endpoints to manage users. It allows you to retrieve all users, add a new user, get a user by ID, update a user, and delete a user.
 
 ## React.js Project Link
-[SIMPLE-CLIENT Project]([https://xxxxxxxxx](https://github.com/nico-arch/SIMPLE-CLIENT))
+[SIMPLE-CLIENT Project](https://github.com/nico-arch/SIMPLE-CLIENT)
 
 ## Endpoints
 
