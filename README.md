@@ -95,4 +95,4 @@ This Node.js API (v1) serves as the backend for a React.js project, providing en
 Feel free to contribute to this project by reporting bugs, suggesting enhancements, or submitting pull requests.
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
