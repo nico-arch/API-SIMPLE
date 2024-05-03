@@ -15,7 +15,7 @@ This Node.js API (v1) serves as the backend for a React.js project, providing en
 - **Example Response:**
 ```json
 {
-    "status": "OK",
+    "status": true,
     "users": [
         {
             "id": 1,
@@ -65,7 +65,7 @@ This Node.js API (v1) serves as the backend for a React.js project, providing en
 - **Example Response:**
 ```json
 {
-    "status": "OK",
+    "status": true,
     "user": {
         "id": 1,
         "name": "John Doe",
