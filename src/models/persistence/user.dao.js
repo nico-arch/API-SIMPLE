@@ -39,7 +39,7 @@ const update = (userID, newDetails) => {
     return false;
   }
 
-  // {}
+  
   const updatedUser = { ...existingUser, ...newDetails }
   users.splice(userIndex, 1, updatedUser);
 

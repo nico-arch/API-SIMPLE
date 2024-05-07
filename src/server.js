@@ -37,12 +37,12 @@ app.use('/v1/user', userRoutes)
 app.get('/', (req, res) => {
   res.status(StatusCodes.OK);
 
-  //console.log('Hello World!');
+  
   res.send("Hello, the API is up and running !");
 });
 
 
 
 app.listen(port, () => {
-  console.log(`Example app listening on port: ${port}`)
+  console.log(`The API is listening on port: ${port}`)
 });
