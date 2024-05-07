@@ -61,7 +61,7 @@ export const updateUser = {
       yupSchema: yup.object().shape(
         {
           name: yup.string().min(min_length.name).max(max_length.name),
-          email: yup.string().email(),
+          email: yup.string().email().required(),
           city: yup.string().min(min_length.city).max(max_length.city),
           country: yup.string().min(min_length.country).max(max_length.country),
         }
