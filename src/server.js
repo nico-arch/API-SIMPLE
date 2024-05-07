@@ -5,8 +5,8 @@ import { StatusCodes } from 'http-status-codes';
 import compression from 'compression';
 import cors from 'cors';
 
-import mainRoutes from './main.routes.js';
-import userRoutes from './user.rootes.js';
+import mainRoutes from './rootes/main.routes.js';
+import userRoutes from './rootes/user.rootes.js';
 
 
 const limiter = rateLimit({
@@ -38,11 +38,11 @@ app.get('/', (req, res) => {
   res.status(StatusCodes.OK);
 
   //console.log('Hello World!');
-  res.send("Hello World! I'm an API !");
+  res.send("Hello, the API is up and running !");
 });
 
 
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Example app listening on port: ${port}`)
 });
