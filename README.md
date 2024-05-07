@@ -83,7 +83,7 @@ This Node.js API (v1) serves as the backend for a React.js project, providing en
 - **Description:** Updates a user's information based on their ID.
 - **Update Schema:** Refer to the `updateUser` schema for validation details.
 - **Required Parameter:** `id`
-- **Required Fields:** `name`, `city`, `country`
+- **Required Fields:** `name`, `email`, `city`, `country`
 
 ### Delete a User by ID
 - **Method:** `DELETE`
