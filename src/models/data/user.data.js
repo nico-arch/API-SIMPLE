@@ -1,5 +1,7 @@
+//I've commented the data.js file, so that it can be regenerated after test execution.
+
 const users = [
-  {
+  /*{
     "id": 1,
     "name": "John Doe",
     "email": "john@example.com",
@@ -138,7 +140,7 @@ const users = [
     "email": "gabriela@example.com",
     "city": "Sao Paulo",
     "country": "Brazil"
-  }
+  }*/
 ]
   ;
 

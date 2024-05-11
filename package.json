@@ -1,20 +1,26 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "This Node.js API (v1) serves as the backend for a React.js project, providing endpoints to manage users. It allows you to retrieve all users, add a new user, get a user by ID, update a user, and delete a user.",
   "main": "node --es-module-specifier-resolution=node src/server.js",
   "type": "module",
   "scripts": {
     "start": "node --es-module-specifier-resolution=node src/server.js",
     "test": "ava"
   },
+  "ava": {
+    "require": [
+      "@babel/register"
+    ]
+  },
   "keywords": [],
-  "author": "",
+  "author": "Nick Anderson Azemar",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.22.9",
     "@babel/node": "^7.22.6",
     "@babel/preset-env": "^7.22.9",
+    "@babel/register": "^7.23.7",
     "@types/node": "^18.0.6",
     "ava": "^5.3.1",
     "compression": "^1.7.4",
