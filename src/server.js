@@ -37,8 +37,12 @@ app.use('/v1/user', userRoutes)
 app.get('/', (req, res) => {
   res.status(StatusCodes.OK);
 
-  
-  res.send("Hello, the API is up and running !");
+  const helloMessage = {
+    status: StatusCodes.OK,
+    message: "Hello, the API is up and running !",
+  };
+
+  res.send(helloMessage);
 });
 
 

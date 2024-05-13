@@ -5,7 +5,7 @@ import { expressYupMiddleware } from 'express-yup-middleware';
 import { addUser, updateUser, getUser, removeUser } from '../schemas/user.schemas.js';
 
 import userController from '../controllers/user.controller.js';
-
+import pino from 'pino';
 
 const rooter = express.Router();
 
@@ -14,9 +14,16 @@ rooter.use(express.json());
 
 
 rooter.get('/ping', (req, res) => {
-  res.status(StatusCodes.OK);
 
-  res.send('OK !');
+  const logger = pino();
+  const pingMessage = {
+    status: StatusCodes.OK,
+    message: `Success pinged the API`,
+    //request: `${req}`,
+  };
+  logger.info("Pinging the API");
+
+  return res.status(StatusCodes.OK).send(pingMessage);
 });
 
 
